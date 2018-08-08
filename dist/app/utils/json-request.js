@@ -1,6 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const request = require("request");
-//import config from '../../config'
 //import {json} from 'body-parser'
 const requestParamsPost = request.defaults({
     //baseUrl: `http://localhost:${config.HTTP_PORT}`,
