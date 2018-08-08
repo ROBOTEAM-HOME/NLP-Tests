@@ -1,5 +1,4 @@
 import * as request from 'request'
-//import config from '../../config'
 //import {json} from 'body-parser'
 
 
