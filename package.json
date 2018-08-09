@@ -3,7 +3,8 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test" : "mocha --bail 'dist/test/controllers/*.spec.js' "
   },
   "dependencies": {
     "@types/body-parser": "^1.17.0",
