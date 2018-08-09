@@ -22,6 +22,8 @@ import {PROVIDERS} from '../../app/controllers/conf'
 import {to} from '../../app/utils/async'
 import * as equal from 'fast-deep-equal'
 import * as phrases from '../../app/Phrases'
+import * as request from 'request'
+import clean = Mocha.utils.clean;
 
 
 const testingHttpPort: string = config.TEST_HTTP_PORT
@@ -33,14 +35,28 @@ const httpServerSettings = {
 const protocol: string = 'https:'
 const api_version = '/api/v1'
 const url: string = `${protocol}//api.dialogflow.com/v1/query?v=20150910`
+const deleteContextsUrl: string = `${protocol}//api.dialogflow.com/v1/contexts?v=20170712&sessionId=`
+const auth = {'bearer': 'b9e08b9d10f5424d96f019ab57de84d8'}
+const headers = {'Content-Type': 'application/json'}
 
 async function test_func(test_case_body_result: any) {
     // this.timeout(15000)
     conf.BASE_BODY.result = test_case_body_result
-    const response: any = await apiConnect(url, conf.BASE_BODY, {headers: {}}).catch(e => {
+    const response: any = await apiConnect(url, test_case_body_result, {headers: headers, auth: auth}).catch(e => {
         throw e
     })
     return response
+}
+
+async function clean_contexts(sessionId: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+        request.delete(deleteContextsUrl + sessionId, {headers: headers, auth: auth}, (e, res, body) => {
+            if (e) {
+                throw e
+            } else
+                return body
+        })
+    })
 }
 
 describe('Compare known knowledge results', function () {
@@ -55,9 +71,10 @@ describe('Compare known knowledge results', function () {
         await httpServer.instance.close()
     })
 
-    function removeVersionNumber(knowledgeResult: any) {
-        knowledgeResult.version = "";
-        return knowledgeResult;
+    function cleanFields(nlpResponse: any) {
+        nlpResponse.id = "";
+        nlpResponse.timestamp = "";
+        return nlpResponse;
     }
 
     function removePrefix(knowledgeResult: any){
@@ -122,9 +139,35 @@ describe('Compare known knowledge results', function () {
 
     it('What agent is this', async function () {
         this.timeout(15000)
-        const response = await test_func(conf.GENERAL_WHAT_AGENT_IS_THIS)
+        clean_contexts(conf.GENERAL_WHAT_AGENT_IS_THIS.sessionId).then((response) => {
+            test_func(conf.GENERAL_WHOIS_ALBERTEINSTEIN)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHAT_AGENT_IS_THIS_EXPECTED))
+        })
+    })
 
-        expect(response).to.deep.equals(conf.GENERAL_WHAT_AGENT_IS_THIS_EXPECTED)
+
+    it('Who is Albert Einstein', async function () {
+        this.timeout(15000)
+        clean_contexts(conf.GENERAL_WHOIS_ALBERTEINSTEIN.sessionId).then((response) => {
+            test_func(conf.GENERAL_WHOIS_ALBERTEINSTEIN)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHOIS_ALBERTEINSTEIN_EXPECTED))
+        })
+    })
+
+    it('Who is President of the USA', async function () {
+        this.timeout(15000)
+        clean_contexts(conf.GENERAL_WHOIS_POTUS.sessionId).then((response) => {
+            test_func(conf.GENERAL_WHOIS_POTUS)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHOIS_POTUS_EXPECTED))
+        })
+    })
+
+    it('Who is President of the USA', async function () {
+        this.timeout(15000)
+        clean_contexts(conf.GENERAL_WHOIS_POTUS.sessionId).then((response) => {
+            test_func(conf.GENERAL_WHOIS_POTUS)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHOIS_POTUS_EXPECTED))
+        })
     })
 
 })

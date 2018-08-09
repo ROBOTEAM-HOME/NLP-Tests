@@ -27,6 +27,7 @@ const chai_1 = require("chai");
 const conf = require("./Conf");
 const equal = require("fast-deep-equal");
 const phrases = require("../../app/Phrases");
+const request = require("request");
 const testingHttpPort = config_1.default.TEST_HTTP_PORT;
 const httpServerSettings = {
     port: testingHttpPort,
@@ -35,14 +36,30 @@ const httpServerSettings = {
 const protocol = 'https:';
 const api_version = '/api/v1';
 const url = `${protocol}//api.dialogflow.com/v1/query?v=20150910`;
+const deleteContextsUrl = `${protocol}//api.dialogflow.com/v1/contexts?v=20170712&sessionId=`;
+const auth = { 'bearer': 'b9e08b9d10f5424d96f019ab57de84d8' };
+const headers = { 'Content-Type': 'application/json' };
 function test_func(test_case_body_result) {
     return __awaiter(this, void 0, void 0, function* () {
         // this.timeout(15000)
         conf.BASE_BODY.result = test_case_body_result;
-        const response = yield json_request_1.connect(url, conf.BASE_BODY, { headers: {} }).catch(e => {
+        const response = yield json_request_1.connect(url, test_case_body_result, { headers: headers, auth: auth }).catch(e => {
             throw e;
         });
         return response;
+    });
+}
+function clean_contexts(sessionId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            request.delete(deleteContextsUrl + sessionId, { headers: headers, auth: auth }, (e, res, body) => {
+                if (e) {
+                    throw e;
+                }
+                else
+                    return body;
+            });
+        });
     });
 }
 describe('Compare known knowledge results', function () {
@@ -60,9 +77,10 @@ describe('Compare known knowledge results', function () {
             yield httpServer.instance.close();
         });
     });
-    function removeVersionNumber(knowledgeResult) {
-        knowledgeResult.version = "";
-        return knowledgeResult;
+    function cleanFields(nlpResponse) {
+        nlpResponse.id = "";
+        nlpResponse.timestamp = "";
+        return nlpResponse;
     }
     function removePrefix(knowledgeResult) {
         for (var i = 0; i < phrases.generalPrefixes.length; i++) {
@@ -120,8 +138,37 @@ describe('Compare known knowledge results', function () {
     it('What agent is this', function () {
         return __awaiter(this, void 0, void 0, function* () {
             this.timeout(15000);
-            const response = yield test_func(conf.GENERAL_WHAT_AGENT_IS_THIS);
-            chai_1.expect(response).to.deep.equals(conf.GENERAL_WHAT_AGENT_IS_THIS_EXPECTED);
+            clean_contexts(conf.GENERAL_WHAT_AGENT_IS_THIS.sessionId).then((response) => {
+                test_func(conf.GENERAL_WHOIS_ALBERTEINSTEIN);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHAT_AGENT_IS_THIS_EXPECTED));
+            });
+        });
+    });
+    it('Who is Albert Einstein', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.timeout(15000);
+            clean_contexts(conf.GENERAL_WHOIS_ALBERTEINSTEIN.sessionId).then((response) => {
+                test_func(conf.GENERAL_WHOIS_ALBERTEINSTEIN);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHOIS_ALBERTEINSTEIN_EXPECTED));
+            });
+        });
+    });
+    it('Who is President of the USA', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.timeout(15000);
+            clean_contexts(conf.GENERAL_WHOIS_POTUS.sessionId).then((response) => {
+                test_func(conf.GENERAL_WHOIS_POTUS);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHOIS_POTUS_EXPECTED));
+            });
+        });
+    });
+    it('Who is President of the USA', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.timeout(15000);
+            clean_contexts(conf.GENERAL_WHOIS_POTUS.sessionId).then((response) => {
+                test_func(conf.GENERAL_WHOIS_POTUS);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHOIS_POTUS_EXPECTED));
+            });
         });
     });
 });
