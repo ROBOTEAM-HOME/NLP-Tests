@@ -453,49 +453,201 @@ export const GENERAL_WHAT_AGENT_IS_THIS_EXPECTED = {
     "sessionId": "12345"
 }
 
-export const EXPECTEDRESPONSE_WHOIS_MADONNA_DEV = [{
-    "version": "",
-    "success": true,
-    "userInput": "who is madonna",
-    "spokenResult": "Here's some info for you: ",
-    "resultsType": "full",
-    "provider": {
-        "name": "Bing",
-        "image": ""
-    },
-    "knowledgeResult": {
-        "pages": [{
-            "title": "Madonna",
-            "subtitle": "",
-            "image": "http://upload.wikimedia.org/wikipedia/commons/a/a4/Madonna_-_Rebel_Heart_Tour_2016_-_Sydney_1_%2826194244042%29.jpg",
-            "type": "overview",
-            "summary": "Madonna Louise Ciccone is an American singer, songwriter, actress, and businesswoman."
-        }
-        ]
-    }
-},{
-    "version": "",
-        "success": true,
-        "userInput": "who is madonna",
-        "spokenResult": "I'm not sure I found the right \"Madonna\", but here's my best guess:",
-        "resultsType": "full",
-        "provider": {
-        "name": "Wolfram Alpha",
-            "image": ""
-    },
-    "knowledgeResult": {
-        "pages": [{
-            "type": "info",
-            "title": "Basic information",
-            "table": {
-                "full name": "Madonna Louise Veronica Ciccone",
-                "date of birth": "Saturday, August 16, 1958 (age: 59 years)",
-                "place of birth": "Bay City, Michigan, United States"
+export const GENERAL_SIMPLE_DISTANCE_EXPECTED = {
+    "id": "c2a960e2-c178-4e68-9db1-997cb6140292",
+    "timestamp": "2018-07-26T11:07:06.121Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "what's the distance from Tokyo to Berlin",
+        "action": "knowledge",
+        "actionIncomplete": false,
+        "parameters": {
+            "location1": {
+                "admin-area": "Tokyo"
+            },
+            "location2": {
+                "city": "Berlin"
+            },
+            "landmark1": "",
+            "landmark2": "",
+            "knowledge": "geography.simple"
+        },
+        "contexts": [
+            {
+                "name": "knowledge",
+                "parameters": {
+                    "knowledge.original": "",
+                    "location1.original": "Tokyo",
+                    "location1": {
+                        "admin-area": "Tokyo",
+                        "admin-area.original": "Tokyo",
+                        "admin-area.object": {}
+                    },
+                    "landmark1.original": "",
+                    "landmark1": "",
+                    "location2": {
+                        "city": "Berlin",
+                        "city.original": "Berlin",
+                        "city.object": {}
+                    },
+                    "landmark2": "",
+                    "landmark2.original": "",
+                    "knowledge": "geography.simple",
+                    "location2.original": "Berlin"
+                },
+                "lifespan": 2
             }
-        }
-        ]
-    }
-}]
+        ],
+        "metadata": {
+            "intentId": "382b70aa-618d-4219-91d6-f6f6ce6173fc",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Knowledge:Geography:distance"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
+                }
+            ]
+        },
+        "score": 0.9954933506735761
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+}
+
+export const GENERAL_WHOIS_ALBERTEINSTEIN_EXPECTED = {
+    "id": "69dadae0-7b2c-4ccd-b471-0045f960bb76",
+    "timestamp": "2018-08-09T13:24:47.633Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "who is albert einstein",
+        "action": "knowledge",
+        "actionIncomplete": false,
+        "parameters": {
+            "person": "albert einstein",
+            "last_name2": "",
+            "knowledge": "person",
+            "given_name": "",
+            "last_name": ""
+        },
+        "contexts": [
+            {
+                "name": "knowledge",
+                "parameters": {
+                    "person.original": "albert einstein",
+                    "last_name2": "",
+                    "last_name2.original": "",
+                    "given_name.original": "",
+                    "last_name.original": "",
+                    "knowledge.original": "",
+                    "person": "albert einstein",
+                    "last_name": "",
+                    "given_name": "",
+                    "knowledge": "person"
+                },
+                "lifespan": 2
+            }
+        ],
+        "metadata": {
+            "intentId": "baa11ed3-6233-4fa5-8f29-e47954c85e77",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Knowledge:Person:who-is"
+        },
+        "fulfillment": {
+            "speech": "I don't know who that is yet, but I'm still learning.",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": "I don't know who that is yet, but I'm still learning."
+                }
+            ]
+        },
+        "score": 1
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+}
+
+export const GENERAL_WHOIS_POTUS_EXPECTED = {
+    "id": "e69f04fd-0822-46b2-909b-a013e08b21dd",
+    "timestamp": "2018-08-09T13:47:47.935Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "who is the president of the USA",
+        "action": "knowledge",
+        "actionIncomplete": false,
+        "parameters": {
+            "leader": [
+                "president"
+            ],
+            "geo_country": "United States of America",
+            "company": "",
+            "geo_city": "",
+            "geo_state_us": "",
+            "knowledge": "person.simple"
+        },
+        "contexts": [
+            {
+                "name": "knowledge",
+                "parameters": {
+                    "leader": [
+                        "president"
+                    ],
+                    "geo_city.original": "",
+                    "geo_state_us.original": "",
+                    "company.original": "",
+                    "knowledge.original": "",
+                    "geo_country.original": "USA",
+                    "geo_city": "",
+                    "geo_country": "United States of America",
+                    "geo_state_us": "",
+                    "company": "",
+                    "leader.original": "president",
+                    "knowledge": "person.simple"
+                },
+                "lifespan": 2
+            }
+        ],
+        "metadata": {
+            "intentId": "bcd5b892-6dc6-4077-9498-82d1dffde2b7",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Knowledge:Person:leader"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
+                }
+            ]
+        },
+        "score": 0.9836437471173937
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+}
 
 export const EXPECTEDRESPONSE_WHOIS_ALBERTEINSTEIN = [{
     "version": "",
@@ -862,26 +1014,31 @@ export const GENERAL_WHAT_AGENT_IS_THIS =   {
     "sessionId": "12345",
     "timezone": "America/New_York"
 }
-export const DISTANCE_CONVERTER_RESULT =
+export const GENERAL_WHOIS_ALBERTEINSTEIN =
     {
-        'source': 'agent',
-        'resolvedQuery': 'convert 10 miles per hour to kilometre per hour',
-        'action': 'knowledge',
-        'actionIncomplete': false,
-        'parameters': {
-            'convert_from': 'mph',
-            'convert_to': 'km h',
-            'number': 10,
-            'knowledge': 'converter.speed',
-        },
-        'contexts': [],
-        'metadata': {
-            'intentId': '0a29abef-1585-4087-9e3c-5ad6481a11b9',
-            'webhookUsed': 'false',
-            'webhookForSlotFillingUsed': 'false',
-            'intentName': 'Converter:speed',
-        },
-        'score': 1,
+        "contexts": [],
+        "lang": "en",
+        "query": "who is albert einstein",
+        "sessionId": "12345",
+        "timezone": "America/New_York"
+    }
+
+export const GENERAL_WHOIS_POTUS =
+    {
+        "contexts": [],
+        "lang": "en",
+        "query": "who is the president of the USA",
+        "sessionId": "12345",
+        "timezone": "America/New_York"
+    }
+
+export const GENERAL_SIMPLE_DISTANCE =
+    {
+        "contexts": [],
+        "lang": "en",
+        "query": "what's the distance from Tokyo to Berlin",
+        "sessionId": "12345",
+        "timezone": "America/New_York"
     }
 
 export const DEFAULT_FALLBACK_RESULT = {
