@@ -11,6 +11,8 @@
  * - connect
  * -
  */
+
+const express = require('express')
 import 'mocha'
 import config from '../config'
 import {createHttpServer, HttpServer} from '../../app/servers/HttpServer'
@@ -18,13 +20,9 @@ import {createRegisterHookController} from '../../app/controllers/ControllerRout
 import {connect as apiConnect} from '../../app/utils/json-request'
 import {expect} from 'chai'
 import * as conf from './Conf'
-import {PROVIDERS} from '../../app/controllers/conf'
-import {to} from '../../app/utils/async'
 import * as equal from 'fast-deep-equal'
 import * as phrases from '../../app/Phrases'
 import * as request from 'request'
-import clean = Mocha.utils.clean;
-
 
 const testingHttpPort: string = config.TEST_HTTP_PORT
 
@@ -35,7 +33,7 @@ const httpServerSettings = {
 const protocol: string = 'https:'
 const api_version = '/api/v1'
 const url: string = `${protocol}//api.dialogflow.com/v1/query?v=20150910`
-const deleteContextsUrl: string = `${protocol}//api.dialogflow.com/v1/contexts?v=20170712&sessionId=`
+const contextsUrl: string = `${protocol}//api.dialogflow.com/v1/contexts?v=20170712&sessionId=`
 const auth = {'bearer': 'b9e08b9d10f5424d96f019ab57de84d8'}
 const headers = {'Content-Type': 'application/json'}
 
@@ -50,7 +48,18 @@ async function test_func(test_case_body_result: any) {
 
 async function clean_contexts(sessionId: any): Promise<any> {
     return new Promise((resolve, reject) => {
-        request.delete(deleteContextsUrl + sessionId, {headers: headers, auth: auth}, (e, res, body) => {
+        request.delete(contextsUrl + sessionId, {headers: headers, auth: auth}, (e, res, body) => {
+            if (e) {
+                throw e
+            } else
+                return body
+        })
+    })
+}
+
+async function set_contexts(sessionId: any, contexts: any[]): Promise<any> {
+    return new Promise((resolve, reject) => {
+        request.post(contextsUrl + sessionId, {headers: headers, auth: auth, json: contexts}, (e, res, body) => {
             if (e) {
                 throw e
             } else
@@ -75,15 +84,6 @@ describe('Compare known knowledge results', function () {
         nlpResponse.id = "";
         nlpResponse.timestamp = "";
         return nlpResponse;
-    }
-
-    function removePrefix(knowledgeResult: any){
-        for (var i = 0; i < phrases.generalPrefixes.length; i++) {
-            if (knowledgeResult.includes(phrases.generalPrefixes[i])) {
-                knowledgeResult = knowledgeResult.replace(phrases.generalPrefixes[i], '')
-            }
-        }
-        return knowledgeResult;
     }
 
     function isEquivalent(a: any, b: any) {
@@ -137,7 +137,7 @@ describe('Compare known knowledge results', function () {
         }
         return true;        }
 
-    it('What agent is this', async function () {
+    it('General: What agent is this', async function () {
         this.timeout(15000)
         clean_contexts(conf.GENERAL_WHAT_AGENT_IS_THIS.sessionId).then((response) => {
             test_func(conf.GENERAL_WHOIS_ALBERTEINSTEIN)
@@ -146,7 +146,7 @@ describe('Compare known knowledge results', function () {
     })
 
 
-    it('Who is Albert Einstein', async function () {
+    it('Knowledge: Who is Albert Einstein', async function () {
         this.timeout(15000)
         clean_contexts(conf.GENERAL_WHOIS_ALBERTEINSTEIN.sessionId).then((response) => {
             test_func(conf.GENERAL_WHOIS_ALBERTEINSTEIN)
@@ -154,7 +154,7 @@ describe('Compare known knowledge results', function () {
         })
     })
 
-    it('Who is President of the USA', async function () {
+    it('Knowledge: Who is President of the USA', async function () {
         this.timeout(15000)
         clean_contexts(conf.GENERAL_WHOIS_POTUS.sessionId).then((response) => {
             test_func(conf.GENERAL_WHOIS_POTUS)
@@ -162,13 +162,48 @@ describe('Compare known knowledge results', function () {
         })
     })
 
-    it('Who is President of the USA', async function () {
+    it('Knowledge: Whats the distance from Tokyo to Berlin', async function () {
         this.timeout(15000)
-        clean_contexts(conf.GENERAL_WHOIS_POTUS.sessionId).then((response) => {
-            test_func(conf.GENERAL_WHOIS_POTUS)
-            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHOIS_POTUS_EXPECTED))
+        clean_contexts(conf.GENERAL_SIMPLE_DISTANCE.sessionId).then((response) => {
+            test_func(conf.GENERAL_SIMPLE_DISTANCE)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_SIMPLE_DISTANCE_EXPECTED))
         })
     })
+
+    it('Weather: Whats the weather today', async function () {
+        this.timeout(15000)
+        clean_contexts(conf.WEATHER_WEATHER_TODAY.sessionId).then((response) => {
+            test_func(conf.WEATHER_WEATHER_TODAY)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.WEATHER_WEATHER_TODAY_EXPECTED))
+        })
+    })
+
+    it('Video: Go to the next video', async function () {
+        this.timeout(15000)
+        clean_contexts(conf.VIDEO_NEXT_VIDEO.sessionId).then((response) => {
+            test_func(conf.VIDEO_NEXT_VIDEO)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.VIDEO_NEXT_VIDEO_EXPECTED))
+        })
+    })
+
+    it('Video: Go to the next video (contexts)', async function () {
+        this.timeout(15000)
+        clean_contexts(conf.VIDEO_NEXT_VIDEO_CTX.sessionId).then((response) =>
+        {
+            test_func(conf.VIDEO_NEXT_VIDEO)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.VIDEO_NEXT_VIDEO_EXPECTED))
+        })
+    })
+
+    it('Radio: Look for Madonna', async function () {
+        this.timeout(15000)
+        clean_contexts(conf.RADIO_LOOK_FOR_MADONNA_EXPECTED.sessionId).then((response) =>
+        {
+            test_func(conf.RADIO_LOOK_FOR_MADONNA)
+            expect(cleanFields(response)).to.deep.equals(cleanFields(conf.RADIO_LOOK_FOR_MADONNA_EXPECTED))
+        })
+    })
+
 
 })
 

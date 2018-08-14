@@ -18,6 +18,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * - connect
  * -
  */
+const express = require('express');
 require("mocha");
 const config_1 = require("../config");
 const HttpServer_1 = require("../../app/servers/HttpServer");
@@ -26,7 +27,6 @@ const json_request_1 = require("../../app/utils/json-request");
 const chai_1 = require("chai");
 const conf = require("./Conf");
 const equal = require("fast-deep-equal");
-const phrases = require("../../app/Phrases");
 const request = require("request");
 const testingHttpPort = config_1.default.TEST_HTTP_PORT;
 const httpServerSettings = {
@@ -36,7 +36,7 @@ const httpServerSettings = {
 const protocol = 'https:';
 const api_version = '/api/v1';
 const url = `${protocol}//api.dialogflow.com/v1/query?v=20150910`;
-const deleteContextsUrl = `${protocol}//api.dialogflow.com/v1/contexts?v=20170712&sessionId=`;
+const contextsUrl = `${protocol}//api.dialogflow.com/v1/contexts?v=20170712&sessionId=`;
 const auth = { 'bearer': 'b9e08b9d10f5424d96f019ab57de84d8' };
 const headers = { 'Content-Type': 'application/json' };
 function test_func(test_case_body_result) {
@@ -52,7 +52,20 @@ function test_func(test_case_body_result) {
 function clean_contexts(sessionId) {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            request.delete(deleteContextsUrl + sessionId, { headers: headers, auth: auth }, (e, res, body) => {
+            request.delete(contextsUrl + sessionId, { headers: headers, auth: auth }, (e, res, body) => {
+                if (e) {
+                    throw e;
+                }
+                else
+                    return body;
+            });
+        });
+    });
+}
+function set_contexts(sessionId, contexts) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            request.post(contextsUrl + sessionId, { headers: headers, auth: auth, json: contexts }, (e, res, body) => {
                 if (e) {
                     throw e;
                 }
@@ -81,14 +94,6 @@ describe('Compare known knowledge results', function () {
         nlpResponse.id = "";
         nlpResponse.timestamp = "";
         return nlpResponse;
-    }
-    function removePrefix(knowledgeResult) {
-        for (var i = 0; i < phrases.generalPrefixes.length; i++) {
-            if (knowledgeResult.includes(phrases.generalPrefixes[i])) {
-                knowledgeResult = knowledgeResult.replace(phrases.generalPrefixes[i], '');
-            }
-        }
-        return knowledgeResult;
     }
     function isEquivalent(a, b) {
         // Create arrays of property names
@@ -135,7 +140,7 @@ describe('Compare known knowledge results', function () {
         }
         return true;
     }
-    it('What agent is this', function () {
+    it('General: What agent is this', function () {
         return __awaiter(this, void 0, void 0, function* () {
             this.timeout(15000);
             clean_contexts(conf.GENERAL_WHAT_AGENT_IS_THIS.sessionId).then((response) => {
@@ -144,7 +149,7 @@ describe('Compare known knowledge results', function () {
             });
         });
     });
-    it('Who is Albert Einstein', function () {
+    it('Knowledge: Who is Albert Einstein', function () {
         return __awaiter(this, void 0, void 0, function* () {
             this.timeout(15000);
             clean_contexts(conf.GENERAL_WHOIS_ALBERTEINSTEIN.sessionId).then((response) => {
@@ -153,7 +158,7 @@ describe('Compare known knowledge results', function () {
             });
         });
     });
-    it('Who is President of the USA', function () {
+    it('Knowledge: Who is President of the USA', function () {
         return __awaiter(this, void 0, void 0, function* () {
             this.timeout(15000);
             clean_contexts(conf.GENERAL_WHOIS_POTUS.sessionId).then((response) => {
@@ -162,12 +167,48 @@ describe('Compare known knowledge results', function () {
             });
         });
     });
-    it('Who is President of the USA', function () {
+    it('Knowledge: Whats the distance from Tokyo to Berlin', function () {
         return __awaiter(this, void 0, void 0, function* () {
             this.timeout(15000);
-            clean_contexts(conf.GENERAL_WHOIS_POTUS.sessionId).then((response) => {
-                test_func(conf.GENERAL_WHOIS_POTUS);
-                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_WHOIS_POTUS_EXPECTED));
+            clean_contexts(conf.GENERAL_SIMPLE_DISTANCE.sessionId).then((response) => {
+                test_func(conf.GENERAL_SIMPLE_DISTANCE);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.GENERAL_SIMPLE_DISTANCE_EXPECTED));
+            });
+        });
+    });
+    it('Weather: Whats the weather today', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.timeout(15000);
+            clean_contexts(conf.WEATHER_WEATHER_TODAY.sessionId).then((response) => {
+                test_func(conf.WEATHER_WEATHER_TODAY);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.WEATHER_WEATHER_TODAY_EXPECTED));
+            });
+        });
+    });
+    it('Video: Go to the next video', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.timeout(15000);
+            clean_contexts(conf.VIDEO_NEXT_VIDEO.sessionId).then((response) => {
+                test_func(conf.VIDEO_NEXT_VIDEO);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.VIDEO_NEXT_VIDEO_EXPECTED));
+            });
+        });
+    });
+    it('Video: Go to the next video (contexts)', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.timeout(15000);
+            clean_contexts(conf.VIDEO_NEXT_VIDEO_CTX.sessionId).then((response) => {
+                test_func(conf.VIDEO_NEXT_VIDEO);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.VIDEO_NEXT_VIDEO_EXPECTED));
+            });
+        });
+    });
+    it('Radio: Look for Madonna', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.timeout(15000);
+            clean_contexts(conf.RADIO_LOOK_FOR_MADONNA_EXPECTED.sessionId).then((response) => {
+                test_func(conf.RADIO_LOOK_FOR_MADONNA);
+                chai_1.expect(cleanFields(response)).to.deep.equals(cleanFields(conf.RADIO_LOOK_FOR_MADONNA_EXPECTED));
             });
         });
     });

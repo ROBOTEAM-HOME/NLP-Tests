@@ -1,6 +1,6 @@
 {
   "name": "nlp-tests",
-  "version": "0.0.2",
+  "version": "18.08.141",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",

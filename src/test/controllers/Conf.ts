@@ -12,52 +12,52 @@ export const BASE_BODY: any = {
 // region full queries to compare with full expected results
 
 export const FULLQUERY_WHOIS_MADONNA = {
-        "source": "agent",
-        "resolvedQuery": "who is madonna",
-        "action": "knowledge",
-        "actionIncomplete": false,
-        "parameters": {
-            "person": "madonna",
-            "last_name2": "",
-            "knowledge": "person",
-            "given_name": "",
-            "last_name": "",
-            "testrun": true
-        },
-        "contexts": [
+    "source": "agent",
+    "resolvedQuery": "who is madonna",
+    "action": "knowledge",
+    "actionIncomplete": false,
+    "parameters": {
+        "person": "madonna",
+        "last_name2": "",
+        "knowledge": "person",
+        "given_name": "",
+        "last_name": "",
+        "testrun": true
+    },
+    "contexts": [
+        {
+            "name": "knowledge",
+            "parameters": {
+                "person.original": "madonna",
+                "last_name2": "",
+                "last_name2.original": "",
+                "given_name.original": "",
+                "last_name.original": "",
+                "knowledge.original": "",
+                "person": "madonna",
+                "last_name": "",
+                "given_name": "",
+                "knowledge": "person"
+            },
+            "lifespan": 2
+        }
+    ],
+    "metadata": {
+        "intentId": "baa11ed3-6233-4fa5-8f29-e47954c85e77",
+        "webhookUsed": "false",
+        "webhookForSlotFillingUsed": "false",
+        "intentName": "Knowledge:Person:who-is"
+    },
+    "fulfillment": {
+        "speech": "I don't know who that is yet, but I'm still learning.",
+        "messages": [
             {
-                "name": "knowledge",
-                "parameters": {
-                    "person.original": "madonna",
-                    "last_name2": "",
-                    "last_name2.original": "",
-                    "given_name.original": "",
-                    "last_name.original": "",
-                    "knowledge.original": "",
-                    "person": "madonna",
-                    "last_name": "",
-                    "given_name": "",
-                    "knowledge": "person"
-                },
-                "lifespan": 2
+                "type": 0,
+                "speech": "I don't know who that is yet, but I'm still learning."
             }
-        ],
-        "metadata": {
-            "intentId": "baa11ed3-6233-4fa5-8f29-e47954c85e77",
-            "webhookUsed": "false",
-            "webhookForSlotFillingUsed": "false",
-            "intentName": "Knowledge:Person:who-is"
-        },
-        "fulfillment": {
-            "speech": "I don't know who that is yet, but I'm still learning.",
-            "messages": [
-                {
-                    "type": 0,
-                    "speech": "I don't know who that is yet, but I'm still learning."
-                }
-            ]
-        },
-        "score": 1
+        ]
+    },
+    "score": 1
 }
 
 export const FULLQUERY_WHOIS_ALBERTEINSTEIN = {
@@ -159,112 +159,112 @@ export const FULLQUERY_WHOIS_BILLSMITH = {
 }
 
 export const FULLQUERY_WHOIS_POTUS = {
-        "source": "agent",
-        "resolvedQuery": "who is the president of the usa",
-        "action": "knowledge",
-        "actionIncomplete": false,
-        "parameters": {
-            "leader": [
-                "president"
-            ],
-            "geo_country": "United States of America",
-            "company": "",
-            "geo_city": "",
-            "geo_state_us": "",
-            "knowledge": "person.simple",
-            "testrun": true
-        },
-        "contexts": [
-            {
-                "name": "knowledge",
-                "parameters": {
-                    "leader": [
-                        "president"
-                    ],
-                    "geo_city.original": "",
-                    "geo_state_us.original": "",
-                    "company.original": "",
-                    "knowledge.original": "",
-                    "geo_country.original": "usa",
-                    "geo_city": "",
-                    "geo_country": "United States of America",
-                    "geo_state_us": "",
-                    "company": "",
-                    "leader.original": "president",
-                    "knowledge": "person.simple"
-                },
-                "lifespan": 2
-            }
+    "source": "agent",
+    "resolvedQuery": "who is the president of the usa",
+    "action": "knowledge",
+    "actionIncomplete": false,
+    "parameters": {
+        "leader": [
+            "president"
         ],
-        "metadata": {
-            "intentId": "bcd5b892-6dc6-4077-9498-82d1dffde2b7",
-            "webhookUsed": "false",
-            "webhookForSlotFillingUsed": "false",
-            "intentName": "Knowledge:Person:leader"
-        },
-        "fulfillment": {
-            "speech": "",
-            "messages": [
-                {
-                    "type": 0,
-                    "speech": ""
-                }
-            ]
-        },
-        "score": 0.9836437471173937
+        "geo_country": "United States of America",
+        "company": "",
+        "geo_city": "",
+        "geo_state_us": "",
+        "knowledge": "person.simple",
+        "testrun": true
+    },
+    "contexts": [
+        {
+            "name": "knowledge",
+            "parameters": {
+                "leader": [
+                    "president"
+                ],
+                "geo_city.original": "",
+                "geo_state_us.original": "",
+                "company.original": "",
+                "knowledge.original": "",
+                "geo_country.original": "usa",
+                "geo_city": "",
+                "geo_country": "United States of America",
+                "geo_state_us": "",
+                "company": "",
+                "leader.original": "president",
+                "knowledge": "person.simple"
+            },
+            "lifespan": 2
+        }
+    ],
+    "metadata": {
+        "intentId": "bcd5b892-6dc6-4077-9498-82d1dffde2b7",
+        "webhookUsed": "false",
+        "webhookForSlotFillingUsed": "false",
+        "intentName": "Knowledge:Person:leader"
+    },
+    "fulfillment": {
+        "speech": "",
+        "messages": [
+            {
+                "type": 0,
+                "speech": ""
+            }
+        ]
+    },
+    "score": 0.9836437471173937
 }
 
 export const FULLQUERY_WHOIS_FASTESTMAN = {
-        "source": "agent",
-        "resolvedQuery": "who is the fastest man in the world",
-        "action": "knowledge",
-        "actionIncomplete": false,
-        "parameters": {
-            "subject": "fastest man in the world",
-            "knowledge": "person.simple",
-            "testrun": true
-        },
-        "contexts": [
-            {
-                "name": "knowledge-person",
-                "parameters": {
-                    "subject.original": "fastest man in the world",
-                    "knowledge.original": "",
-                    "subject": "fastest man in the world",
-                    "knowledge": "person.simple"
-                },
-                "lifespan": 5
+    "source": "agent",
+    "resolvedQuery": "who is the fastest man in the world",
+    "action": "knowledge",
+    "actionIncomplete": false,
+    "parameters": {
+        "subject": "fastest man in the world",
+        "knowledge": "person.simple",
+        "testrun": true
+    },
+    "contexts": [
+        {
+            "name": "knowledge-person",
+            "parameters": {
+                "subject.original": "fastest man in the world",
+                "knowledge.original": "",
+                "subject": "fastest man in the world",
+                "knowledge": "person.simple"
             },
+            "lifespan": 5
+        },
+        {
+            "name": "knowledge",
+            "parameters": {
+                "subject.original": "fastest man in the world",
+                "subject": "fastest man in the world",
+                "knowledge.original": "",
+                "search_term": "chair",
+                "search_term.original": "chair",
+                "knowledge": "person.simple"
+            },
+            "lifespan": 98
+        }
+    ],
+    "metadata": {
+        "intentId": "debb96f4-7248-4a56-bce1-ea0d5c0e2a55",
+        "webhookUsed": "false",
+        "webhookForSlotFillingUsed": "false",
+        "intentName": "Knowledge:Person:who-did"
+    },
+    "fulfillment": {
+        "speech": "",
+        "messages": [
             {
-                "name": "knowledge",
-                "parameters": {
-                    "subject.original": "fastest man in the world",
-                    "subject": "fastest man in the world",
-                    "knowledge.original": "",
-                    "search_term": "chair",
-                    "search_term.original": "chair",
-                    "knowledge": "person.simple"
-                },
-                "lifespan": 98
+                "type": 0,
+                "speech": ""
             }
-        ],
-        "metadata": {
-            "intentId": "debb96f4-7248-4a56-bce1-ea0d5c0e2a55",
-            "webhookUsed": "false",
-            "webhookForSlotFillingUsed": "false",
-            "intentName": "Knowledge:Person:who-did"
-        },
-        "fulfillment": {
-            "speech": "",
-            "messages": [
-                {
-                    "type": 0,
-                    "speech": ""
-                }
-            ]
-        },
-        "score": 0.8655292893150024
-    }
+        ]
+    },
+    "score": 0.8655292893150024
+}
 
 export const FULLQUERY_WHATIS_CHAIR = {
     "source": "agent",
@@ -307,104 +307,104 @@ export const FULLQUERY_WHATIS_CHAIR = {
 }
 
 export const FULLQUERY_WHATIS_COCACOLA = {
-        "source": "agent",
-        "resolvedQuery": "what is coca cola",
-        "action": "knowledge",
-        "actionIncomplete": false,
-        "parameters": {
-            "search_term": "coca cola",
-            "knowledge": "thing",
-            "testrun": true
-        },
-        "contexts": [
+    "source": "agent",
+    "resolvedQuery": "what is coca cola",
+    "action": "knowledge",
+    "actionIncomplete": false,
+    "parameters": {
+        "search_term": "coca cola",
+        "knowledge": "thing",
+        "testrun": true
+    },
+    "contexts": [
+        {
+            "name": "knowledge",
+            "parameters": {
+                "knowledge.original": "",
+                "search_term": "coca cola",
+                "search_term.original": "coca cola",
+                "knowledge": "thing"
+            },
+            "lifespan": 99
+        }
+    ],
+    "metadata": {
+        "intentId": "3e1bd8b6-1adf-45a3-a7d8-133efee3444c",
+        "webhookUsed": "false",
+        "webhookForSlotFillingUsed": "false",
+        "intentName": "Knowledge:Thing:what-is"
+    },
+    "fulfillment": {
+        "speech": "",
+        "messages": [
             {
-                "name": "knowledge",
-                "parameters": {
-                    "knowledge.original": "",
-                    "search_term": "coca cola",
-                    "search_term.original": "coca cola",
-                    "knowledge": "thing"
-                },
-                "lifespan": 99
+                "type": 0,
+                "speech": ""
             }
-        ],
-        "metadata": {
-            "intentId": "3e1bd8b6-1adf-45a3-a7d8-133efee3444c",
-            "webhookUsed": "false",
-            "webhookForSlotFillingUsed": "false",
-            "intentName": "Knowledge:Thing:what-is"
-        },
-        "fulfillment": {
-            "speech": "",
-            "messages": [
-                {
-                    "type": 0,
-                    "speech": ""
-                }
-            ]
-        },
-        "score": 0.75
+        ]
+    },
+    "score": 0.75
 }
 
 export const FULLQUERY_DISTANCEFROMATOB = {
-        "source": "agent",
-        "resolvedQuery": "what's the distance from tokyo to new york in kilometers",
-        "action": "knowledge",
-        "actionIncomplete": false,
-        "parameters": {
-            "location1": {
-                "admin-area": "Tokyo",
-                "testrun": true
-            },
-            "location2": {
-                "admin-area": "New York"
-            },
-            "landmark1": "",
-            "landmark2": "",
-            "knowledge": "geography.simple"
+    "source": "agent",
+    "resolvedQuery": "what's the distance from tokyo to new york in kilometers",
+    "action": "knowledge",
+    "actionIncomplete": false,
+    "parameters": {
+        "location1": {
+            "admin-area": "Tokyo",
+            "testrun": true
         },
-        "contexts": [
-            {
-                "name": "knowledge",
-                "parameters": {
-                    "knowledge.original": "",
-                    "location1.original": "tokyo",
-                    "location1": {
-                        "admin-area": "Tokyo",
-                        "admin-area.original": "tokyo",
-                        "admin-area.object": {}
-                    },
-                    "landmark1.original": "",
-                    "landmark1": "",
-                    "location2": {
-                        "admin-area": "New York",
-                        "admin-area.original": "new york",
-                        "admin-area.object": {}
-                    },
-                    "landmark2": "",
-                    "landmark2.original": "",
-                    "knowledge": "geography.simple",
-                    "location2.original": "new york"
+        "location2": {
+            "admin-area": "New York"
+        },
+        "landmark1": "",
+        "landmark2": "",
+        "knowledge": "geography.simple"
+    },
+    "contexts": [
+        {
+            "name": "knowledge",
+            "parameters": {
+                "knowledge.original": "",
+                "location1.original": "tokyo",
+                "location1": {
+                    "admin-area": "Tokyo",
+                    "admin-area.original": "tokyo",
+                    "admin-area.object": {}
                 },
-                "lifespan": 2
+                "landmark1.original": "",
+                "landmark1": "",
+                "location2": {
+                    "admin-area": "New York",
+                    "admin-area.original": "new york",
+                    "admin-area.object": {}
+                },
+                "landmark2": "",
+                "landmark2.original": "",
+                "knowledge": "geography.simple",
+                "location2.original": "new york"
+            },
+            "lifespan": 2
+        }
+    ],
+    "metadata": {
+        "intentId": "382b70aa-618d-4219-91d6-f6f6ce6173fc",
+        "webhookUsed": "false",
+        "webhookForSlotFillingUsed": "false",
+        "intentName": "Knowledge:Geography:distance"
+    },
+    "fulfillment": {
+        "speech": "",
+        "messages": [
+            {
+                "type": 0,
+                "speech": ""
             }
-        ],
-        "metadata": {
-            "intentId": "382b70aa-618d-4219-91d6-f6f6ce6173fc",
-            "webhookUsed": "false",
-            "webhookForSlotFillingUsed": "false",
-            "intentName": "Knowledge:Geography:distance"
-        },
-        "fulfillment": {
-            "speech": "",
-            "messages": [
-                {
-                    "type": 0,
-                    "speech": ""
-                }
-            ]
-        },
-        "score": 0.9983325963462933
+        ]
+    },
+    "score": 0.9983325963462933
 }
 
 // endregion
@@ -441,6 +441,60 @@ export const GENERAL_WHAT_AGENT_IS_THIS_EXPECTED = {
                 {
                     "type": 0,
                     "speech": "Agent is temi_integration"
+                }
+            ]
+        },
+        "score": 1
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+}
+
+export const WEATHER_WEATHER_TODAY_EXPECTED = {
+    "id": "87384347-3646-4539-8c1a-ac508c66074b",
+    "timestamp": "2018-07-26T10:02:45.17Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "what's the weather today",
+        "action": "weather",
+        "actionIncomplete": false,
+        "parameters": {
+            "date_time": "2018-07-26",
+            "address": "",
+            "unit_temp": "",
+            "temperature": ""
+        },
+        "contexts": [
+            {
+                "name": "weather",
+                "parameters": {
+                    "date_time": "2018-07-26",
+                    "date_time.original": "today",
+                    "temperature": "",
+                    "unit_temp.original": "",
+                    "temperature.original": "",
+                    "address.original": ""
+                },
+                "lifespan": 99
+            }
+        ],
+        "metadata": {
+            "intentId": "561c7608-9f31-4bab-94e2-ce96feb9d5de",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Weather"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
                 }
             ]
         },
@@ -700,55 +754,232 @@ export const EXPECTEDRESPONSE_WHOIS_ALBERTEINSTEIN = [{
 }
 ]
 
-export const EXPECTEDRESPONSE_WHOIS_ALBERTEINSTEIN_DEV = [{
-    "version": "",
-    "success": true,
-    "userInput": "who is albert einstein",
-    "spokenResult": "Here's some info for you: ",
-    "resultsType": "full",
-    "provider": {
-        "name": "Wikipedia",
-        "image": ""
-    },
-    "knowledgeResult": {
-        "pages": [{
-            "title": "Albert Einstein",
-            "subtitle": "",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
-            "type": "overview",
-            "summary": "Albert Einstein was a German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics. His work is also known for its influence on the philosophy of science."
-        }
-        ]
-    }
-},{
-    "version": "",
-    "success": true,
-    "userInput": "who is albert einstein",
-    "spokenResult": "Here's some info for you: ",
-    "resultsType": "full",
-    "provider": {
-        "name": "Wolfram Alpha",
-        "image": ""
-    },
-    "knowledgeResult": {
-        "pages": [{
-            "title": "Notable facts",
-            "facts": ["His investigations into the thermal properties of light laid the foundation of the photon theory of light", "Settled in the United States when Hitler came to power in Germany and became an American citizen in 1940", "Encouraged the United States to develop nuclear weapons, but later joined philosopher Bertrand Russell and other distinguished scientists to warn of their dangers", "Associated with the Institute for Advanced Study in Princeton, New Jersey"],
-            "type": "facts"
-        }, {
-            "type": "info",
-            "title": "Basic information",
-            "table": {
-                "full name": "Albert Einstein",
-                "date of birth": "Friday, March 14, 1879 (139 years ago)",
-                "place of birth": "Ulm, Baden-Wurttemberg, Germany",
-                "date of death": "Monday, April 18, 1955 (age: 76 years), (63 years ago)",
-                "place of death": "Princeton, New Jersey, United States"
+export const VIDEO_NEXT_VIDEO = {
+    "contexts": [],
+    "lang": "en",
+    "query": "go to the next video",
+    "sessionId": "12345",
+    "timezone": "America/New_York"
+}
+
+export const RADIO_LOOK_FOR_MADONNA =   {
+    "contexts": [],
+    "lang": "en",
+    "query": "look for madonna",
+    "sessionId": "12345",
+    "timezone": "America/New_York"
+}
+
+export const RADIO_LOOK_FOR_MADONNA_EXPECTED = {
+    "id": "2238481d-755f-4e42-9e40-a8ac56ac3b67",
+    "timestamp": "2018-07-26T11:03:43.166Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "look for madonna",
+        "action": "radio.search",
+        "actionIncomplete": false,
+        "parameters": {
+            "term": "madonna",
+            "country": "",
+            "language": "",
+            "radio_type": "",
+            "podcast_topic": "",
+            "nearby": "",
+            "sort_by": "",
+            "app_name": "I heart radio"
+        },
+        "contexts": [
+            {
+                "name": "media",
+                "parameters": {
+                    "country": "",
+                    "radio_type.original": "",
+                    "term.original": "madonna",
+                    "podcast_topic": "",
+                    "language.original": "",
+                    "country.original": "",
+                    "nearby.original": "",
+                    "language": "",
+                    "sort_by": "",
+                    "nearby": "",
+                    "podcast_topic.original": "",
+                    "app_name": "I heart radio",
+                    "app_name.original": "",
+                    "term": "madonna",
+                    "sort_by.original": "",
+                    "radio_type": ""
+                },
+                "lifespan": 99
+            },
+            {
+                "name": "radio",
+                "parameters": {
+                    "country": "",
+                    "radio_type.original": "",
+                    "term.original": "madonna",
+                    "podcast_topic": "",
+                    "language.original": "",
+                    "country.original": "",
+                    "nearby.original": "",
+                    "language": "",
+                    "sort_by": "",
+                    "nearby": "",
+                    "podcast_topic.original": "",
+                    "app_name": "I heart radio",
+                    "app_name.original": "",
+                    "term": "madonna",
+                    "sort_by.original": "",
+                    "radio_type": ""
+                },
+                "lifespan": 99
             }
-        }
-        ]
-    }
-}]
+        ],
+        "metadata": {
+            "intentId": "75bfd998-90dd-49fc-980e-00c1539f8643",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Radio:search"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
+                }
+            ]
+        },
+        "score": 0.550000011920929
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+}
+
+
+export const VIDEO_NEXT_VIDEO_EXPECTED = {
+    "id": "245e3eb1-5e27-4dfe-8b06-44d2936e9145",
+    "timestamp": "2018-07-26T10:51:56.04Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "go to the next video",
+        "action": "robot.move.gotolocation.start",
+        "actionIncomplete": false,
+        "parameters": {
+            "location": "next video"
+        },
+        "contexts": [
+            {
+                "name": "move",
+                "parameters": {
+                    "location.original": "next video",
+                    "location": "next video"
+                },
+                "lifespan": 99
+            }
+        ],
+        "metadata": {
+            "intentId": "7af0063f-3622-4e23-b52b-8d4193b7b770",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Move:go-to-location"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
+                }
+            ]
+        },
+        "score": 0.9403985389889412
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+}
+
+export const VIDEO_NEXT_VIDEO_CTX =   {
+    "contexts": [{
+        "name": "video",
+        "parameters": {
+        },
+        "lifespan": 99
+    }, {
+        "name": "media",
+        "parameters": {
+        },
+        "lifespan": 99
+    }],
+    "lang": "en",
+    "query": "go to the next video",
+    "sessionId": "12345",
+    "timezone": "America/New_York"
+}
+
+export const VIDEO_NEXT_VIDEO_CTX_EXPECTED = {
+    "id": "1da2051c-2626-4f2d-ac97-d9947f43e4cc",
+    "timestamp": "2018-07-26T10:26:40.472Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "go to the next video",
+        "action": "video.next",
+        "actionIncomplete": false,
+        "parameters": {},
+        "contexts": [
+            {
+                "name": "move",
+                "parameters": {
+                    "location.original": "next video",
+                    "location": "next video"
+                },
+                "lifespan": 98
+            },
+            {
+                "name": "video",
+                "parameters": {},
+                "lifespan": 99
+            },
+            {
+                "name": "media",
+                "parameters": {},
+                "lifespan": 99
+            }
+        ],
+        "metadata": {
+            "intentId": "f241ecc7-bd95-44c7-a084-69436852d9cf",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Video:next"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
+                }
+            ]
+        },
+        "score": 1
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+}
 
 export const EXPECTEDRESPONSE_WHOIS_BILLSMITH = [{
     "version": "",
@@ -868,24 +1099,24 @@ export const EXPECTEDRESPONSE_WHATIS_CHAIR = {
 
 export const EXPECTEDRESPONSE_WHATIS_COCACOLA = {
     "version": "",
-"success": true,
+    "success": true,
     "userInput": "what is coca cola",
     "spokenResult": "Here's some info for you: ",
     "resultsType": "full",
     "provider": {
-    "name": "Bing",
+        "name": "Bing",
         "image": ""
-},
-"knowledgeResult": {
-    "pages": [{
-        "title": "Coca-Cola",
-        "subtitle": "",
-        "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/500px-Coca-Cola_logo.svg.png",
-        "type": "overview",
-        "summary": "Coca-Cola, or Coke, is a carbonated soft drink produced by The Coca-Cola Company."
+    },
+    "knowledgeResult": {
+        "pages": [{
+            "title": "Coca-Cola",
+            "subtitle": "",
+            "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/500px-Coca-Cola_logo.svg.png",
+            "type": "overview",
+            "summary": "Coca-Cola, or Coke, is a carbonated soft drink produced by The Coca-Cola Company."
+        }
+        ]
     }
-    ]
-}
 }
 
 export const EXPECTEDRESPONSE_DISTANCEFROMATOB = {
@@ -1040,6 +1271,17 @@ export const GENERAL_SIMPLE_DISTANCE =
         "sessionId": "12345",
         "timezone": "America/New_York"
     }
+
+export const WEATHER_WEATHER_TODAY =
+    {
+        "contexts": [],
+        "lang": "en",
+        "query": "what's the distance from Tokyo to Berlin",
+        "sessionId": "12345",
+        "timezone": "America/New_York"
+    }
+
+
 
 export const DEFAULT_FALLBACK_RESULT = {
     'source': 'agent',

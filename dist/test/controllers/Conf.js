@@ -442,6 +442,59 @@ exports.GENERAL_WHAT_AGENT_IS_THIS_EXPECTED = {
     },
     "sessionId": "12345"
 };
+exports.WEATHER_WEATHER_TODAY_EXPECTED = {
+    "id": "87384347-3646-4539-8c1a-ac508c66074b",
+    "timestamp": "2018-07-26T10:02:45.17Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "what's the weather today",
+        "action": "weather",
+        "actionIncomplete": false,
+        "parameters": {
+            "date_time": "2018-07-26",
+            "address": "",
+            "unit_temp": "",
+            "temperature": ""
+        },
+        "contexts": [
+            {
+                "name": "weather",
+                "parameters": {
+                    "date_time": "2018-07-26",
+                    "date_time.original": "today",
+                    "temperature": "",
+                    "unit_temp.original": "",
+                    "temperature.original": "",
+                    "address.original": ""
+                },
+                "lifespan": 99
+            }
+        ],
+        "metadata": {
+            "intentId": "561c7608-9f31-4bab-94e2-ce96feb9d5de",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Weather"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
+                }
+            ]
+        },
+        "score": 1
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+};
 exports.GENERAL_SIMPLE_DISTANCE_EXPECTED = {
     "id": "c2a960e2-c178-4e68-9db1-997cb6140292",
     "timestamp": "2018-07-26T11:07:06.121Z",
@@ -685,55 +738,224 @@ exports.EXPECTEDRESPONSE_WHOIS_ALBERTEINSTEIN = [{
         }
     }
 ];
-exports.EXPECTEDRESPONSE_WHOIS_ALBERTEINSTEIN_DEV = [{
-        "version": "",
-        "success": true,
-        "userInput": "who is albert einstein",
-        "spokenResult": "Here's some info for you: ",
-        "resultsType": "full",
-        "provider": {
-            "name": "Wikipedia",
-            "image": ""
+exports.VIDEO_NEXT_VIDEO = {
+    "contexts": [],
+    "lang": "en",
+    "query": "go to the next video",
+    "sessionId": "12345",
+    "timezone": "America/New_York"
+};
+exports.RADIO_LOOK_FOR_MADONNA = {
+    "contexts": [],
+    "lang": "en",
+    "query": "look for madonna",
+    "sessionId": "12345",
+    "timezone": "America/New_York"
+};
+exports.RADIO_LOOK_FOR_MADONNA_EXPECTED = {
+    "id": "2238481d-755f-4e42-9e40-a8ac56ac3b67",
+    "timestamp": "2018-07-26T11:03:43.166Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "look for madonna",
+        "action": "radio.search",
+        "actionIncomplete": false,
+        "parameters": {
+            "term": "madonna",
+            "country": "",
+            "language": "",
+            "radio_type": "",
+            "podcast_topic": "",
+            "nearby": "",
+            "sort_by": "",
+            "app_name": "I heart radio"
         },
-        "knowledgeResult": {
-            "pages": [{
-                    "title": "Albert Einstein",
-                    "subtitle": "",
-                    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
-                    "type": "overview",
-                    "summary": "Albert Einstein was a German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics. His work is also known for its influence on the philosophy of science."
+        "contexts": [
+            {
+                "name": "media",
+                "parameters": {
+                    "country": "",
+                    "radio_type.original": "",
+                    "term.original": "madonna",
+                    "podcast_topic": "",
+                    "language.original": "",
+                    "country.original": "",
+                    "nearby.original": "",
+                    "language": "",
+                    "sort_by": "",
+                    "nearby": "",
+                    "podcast_topic.original": "",
+                    "app_name": "I heart radio",
+                    "app_name.original": "",
+                    "term": "madonna",
+                    "sort_by.original": "",
+                    "radio_type": ""
+                },
+                "lifespan": 99
+            },
+            {
+                "name": "radio",
+                "parameters": {
+                    "country": "",
+                    "radio_type.original": "",
+                    "term.original": "madonna",
+                    "podcast_topic": "",
+                    "language.original": "",
+                    "country.original": "",
+                    "nearby.original": "",
+                    "language": "",
+                    "sort_by": "",
+                    "nearby": "",
+                    "podcast_topic.original": "",
+                    "app_name": "I heart radio",
+                    "app_name.original": "",
+                    "term": "madonna",
+                    "sort_by.original": "",
+                    "radio_type": ""
+                },
+                "lifespan": 99
+            }
+        ],
+        "metadata": {
+            "intentId": "75bfd998-90dd-49fc-980e-00c1539f8643",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Radio:search"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
                 }
             ]
-        }
-    }, {
-        "version": "",
-        "success": true,
-        "userInput": "who is albert einstein",
-        "spokenResult": "Here's some info for you: ",
-        "resultsType": "full",
-        "provider": {
-            "name": "Wolfram Alpha",
-            "image": ""
         },
-        "knowledgeResult": {
-            "pages": [{
-                    "title": "Notable facts",
-                    "facts": ["His investigations into the thermal properties of light laid the foundation of the photon theory of light", "Settled in the United States when Hitler came to power in Germany and became an American citizen in 1940", "Encouraged the United States to develop nuclear weapons, but later joined philosopher Bertrand Russell and other distinguished scientists to warn of their dangers", "Associated with the Institute for Advanced Study in Princeton, New Jersey"],
-                    "type": "facts"
-                }, {
-                    "type": "info",
-                    "title": "Basic information",
-                    "table": {
-                        "full name": "Albert Einstein",
-                        "date of birth": "Friday, March 14, 1879 (139 years ago)",
-                        "place of birth": "Ulm, Baden-Wurttemberg, Germany",
-                        "date of death": "Monday, April 18, 1955 (age: 76 years), (63 years ago)",
-                        "place of death": "Princeton, New Jersey, United States"
-                    }
+        "score": 0.550000011920929
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+};
+exports.VIDEO_NEXT_VIDEO_EXPECTED = {
+    "id": "245e3eb1-5e27-4dfe-8b06-44d2936e9145",
+    "timestamp": "2018-07-26T10:51:56.04Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "go to the next video",
+        "action": "robot.move.gotolocation.start",
+        "actionIncomplete": false,
+        "parameters": {
+            "location": "next video"
+        },
+        "contexts": [
+            {
+                "name": "move",
+                "parameters": {
+                    "location.original": "next video",
+                    "location": "next video"
+                },
+                "lifespan": 99
+            }
+        ],
+        "metadata": {
+            "intentId": "7af0063f-3622-4e23-b52b-8d4193b7b770",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Move:go-to-location"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
                 }
             ]
-        }
-    }];
+        },
+        "score": 0.9403985389889412
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+};
+exports.VIDEO_NEXT_VIDEO_CTX = {
+    "contexts": [{
+            "name": "video",
+            "parameters": {},
+            "lifespan": 99
+        }, {
+            "name": "media",
+            "parameters": {},
+            "lifespan": 99
+        }],
+    "lang": "en",
+    "query": "go to the next video",
+    "sessionId": "12345",
+    "timezone": "America/New_York"
+};
+exports.VIDEO_NEXT_VIDEO_CTX_EXPECTED = {
+    "id": "1da2051c-2626-4f2d-ac97-d9947f43e4cc",
+    "timestamp": "2018-07-26T10:26:40.472Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "go to the next video",
+        "action": "video.next",
+        "actionIncomplete": false,
+        "parameters": {},
+        "contexts": [
+            {
+                "name": "move",
+                "parameters": {
+                    "location.original": "next video",
+                    "location": "next video"
+                },
+                "lifespan": 98
+            },
+            {
+                "name": "video",
+                "parameters": {},
+                "lifespan": 99
+            },
+            {
+                "name": "media",
+                "parameters": {},
+                "lifespan": 99
+            }
+        ],
+        "metadata": {
+            "intentId": "f241ecc7-bd95-44c7-a084-69436852d9cf",
+            "webhookUsed": "false",
+            "webhookForSlotFillingUsed": "false",
+            "isFallbackIntent": "false",
+            "intentName": "Video:next"
+        },
+        "fulfillment": {
+            "speech": "",
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": ""
+                }
+            ]
+        },
+        "score": 1
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success"
+    },
+    "sessionId": "12345"
+};
 exports.EXPECTEDRESPONSE_WHOIS_BILLSMITH = [{
         "version": "",
         "success": true,
@@ -1004,6 +1226,13 @@ exports.GENERAL_WHOIS_POTUS = {
     "timezone": "America/New_York"
 };
 exports.GENERAL_SIMPLE_DISTANCE = {
+    "contexts": [],
+    "lang": "en",
+    "query": "what's the distance from Tokyo to Berlin",
+    "sessionId": "12345",
+    "timezone": "America/New_York"
+};
+exports.WEATHER_WEATHER_TODAY = {
     "contexts": [],
     "lang": "en",
     "query": "what's the distance from Tokyo to Berlin",
